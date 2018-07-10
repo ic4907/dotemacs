@@ -17,6 +17,9 @@
 
 (use-package ag :ensure t)
 
+(use-package window-numbering
+  :ensure t)
+
 ;; shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (use-package exec-path-from-shell :ensure t)

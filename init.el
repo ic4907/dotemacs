@@ -9,28 +9,28 @@
 
 (setq my/package-list
       '(cider
-	clj-refactor
-	clojure-mode
-	company
-	exec-path-from-shell
-	flycheck
-	git
-	git-gutter
-	git-gutter-fringe
-	js2-mode
-	json-mode
-	json-reformat
-	magit
-	paredit
-	popup
-	projectile
-	rainbow-delimiters
-	rainbow-mode
-	smartparens
-	web-mode
-	yasnippet
-	use-package
-	))
+		clj-refactor
+		clojure-mode
+		company
+		exec-path-from-shell
+		flycheck
+		git
+		git-gutter
+		git-gutter-fringe
+		js2-mode
+		json-mode
+		json-reformat
+		magit
+		paredit
+		popup
+		projectile
+		rainbow-delimiters
+		rainbow-mode
+		smartparens
+		web-mode
+		yasnippet
+		use-package
+		))
 
 ;; fetch the list of packages available
 (unless (file-exists-p package-user-dir)
@@ -45,3 +45,4 @@
 (add-to-list 'load-path "~/.emacs.d/config")
 (require 'ui-conf)
 (require 'package-conf)
+(require 'org-conf)
