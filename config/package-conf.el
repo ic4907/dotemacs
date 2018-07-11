@@ -18,7 +18,10 @@
 (use-package ag :ensure t)
 
 (use-package window-numbering
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+	(window-numbering-mode t)))
 
 ;; shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
