@@ -2,7 +2,7 @@
 (require 'ox-publish)
 
 (use-package htmlize
-   :ensure t)
+  :ensure t)
 
 (setq org-mode-websrc-directory (concat (getenv "HOME") "/Documents/blog/"))
 (setq org-mode-notesrc-directory (concat (getenv "HOME") "/Documents/blog/notes/"))
@@ -24,6 +24,7 @@
          :auto-preamble        t
          :auto-postamble       nil
          :auto-sitemap         t
+		 :makeindex            t
          :sitemap-title        "Dapei Jiang's Blog"
          :section-numbers      nil
          :table-of-contents    nil
