@@ -4,9 +4,6 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")
                          ("melpa"     . "http://melpa.org/packages/")
