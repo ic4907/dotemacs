@@ -5,74 +5,60 @@
   :ensure t)
 
 (setq org-mode-websrc-directory (concat (getenv "HOME") "/Documents/blog/"))
-(setq org-mode-notesrc-directory (concat (getenv "HOME") "/Documents/blog/notes/"))
 (setq org-mode-publishing-directory (concat (getenv "HOME") "/Public/blog"))
+;;(setq org-mode-publishing-directory "/ssh:root@orgdown.com:/var/www/blog")
 
-(setq org-publish-project-alist
-      `(("all"
-         :components ("blog-content" "blog-static" "org-notes"))
+(use-package ox-reveal
+  :defer t
+  :config
+  (progn
+    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")))
 
-        ("blog-content"
-         :base-directory       ,org-mode-websrc-directory
-         :base-extension       "org"
-         :publishing-directory ,org-mode-publishing-directory
-         :recursive            t
-         :publishing-function  org-html-publish-to-html
-         :preparation-function org-mode-blog-prepare
-         :export-with-tags     nil
-         :headline-levels      4
-         :auto-preamble        t
-         :auto-postamble       nil
-         :auto-sitemap         t
-		 :makeindex            t
-         :sitemap-title        "Dapei Jiang's Blog"
-         :section-numbers      nil
-         :table-of-contents    nil
-         :with-toc             nil
-         :with-author          nil
-         :with-creator         nil
-         :with-tags            nil
-         :with-smart-quotes    t
+(use-package org
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c b" . org-iswitchb)
+         ("C-c c" . org-capture)
+         ("C-c M-p" . org-babel-previous-src-block)
+         ("C-c M-n" . org-babel-next-src-block)
+         ("C-c S" . org-babel-previous-src-block)
+         ("C-c s" . org-babel-next-src-block))
+  :config
+  (progn
+	(use-package org-install)
+	(use-package ox)
+	(use-package org-archive)
+	(setq org-publish-project-alist
+		  `(;; Main website at http://writequit.org
+			("blog"
+			 :base-directory ,org-mode-websrc-directory
+			 :base-extension "org\\|html"
+			 :publishing-directory ,org-mode-publishing-directory
+			 :publishing-function org-html-publish-to-html
+			 :with-toc nil
+			 :recursive t
+			 :auto-sitemap         t
+			 :makeindex            t
+			 :html-doctype         "html5"
+			 :html-html5-fancy     t
+			 :html-preamble        org-mode-blog-preamble
+			 :html-postamble       t
+			 :html-head  "<link rel=\"stylesheet\" href=\"/css/normalize.css\" type=\"text/css\"/>\n
+            <link rel=\"stylesheet\" href=\"/css/styles.css\" type=\"text/css\"/>"
+			 :html-head-include-default-style nil)
+			("blog-static"
+			 :base-directory       ,org-mode-websrc-directory
+			 :base-extension       "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
+			 :publishing-directory ,org-mode-publishing-directory
+			 :recursive            t
+			 :publishing-function  org-publish-attachment)
 
-         :html-doctype         "html5"
-         :html-html5-fancy     t
-         :html-preamble        org-mode-blog-preamble
-         :html-postamble       org-mode-blog-postamble
-         ;; :html-postamble "<hr><div id='comments'></div>"
-         :html-head  "<link rel=\"stylesheet\" href=\"/css/styles.css\" type=\"text/css\"/>\n
-            <link rel=\"stylesheet\" href=\"/css/pure-min.css\" type=\"text/css\"/>"
-         :html-head-extra "<link rel=\"shortcut icon\" href=\"/img/dragon-head.png\">
-            <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />"
-         :html-head-include-default-style nil
-         )
-
-        ("blog-static"
-         :base-directory       ,org-mode-websrc-directory
-         :base-extension       "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
-         :publishing-directory ,org-mode-publishing-directory
-         :recursive            t
-         :publishing-function  org-publish-attachment
-         )))
+			("blog" :components ("blog" "blog-static"))))))
 
 (defun org-mode-blog-preamble (options)
   "The function that creates the preamble top section for the blog.
 OPTIONS contains the property list from the org-mode export."
   (let ((base-directory (plist-get options :base-directory)))
     (org-babel-with-temp-filebuffer (expand-file-name "header.html" base-directory) (buffer-string))))
-
-(defun org-mode-blog-postamble (options)
-  "The function that creates the postamble, or bottom section for the blog.
-OPTIONS contains the property list from the org-mode export."
-  (let ((base-directory (plist-get options :base-directory)))
-    (org-babel-with-temp-filebuffer (expand-file-name "footer.html" base-directory) (buffer-string))))
-
-(defun org-mode-blog-prepare ()
-  "`index.org' should always be exported so touch the file before publishing."
-  (let* ((base-directory (plist-get project-plist :base-directory))
-         (buffer (find-file-noselect (expand-file-name "index.org" base-directory) t)))
-    (with-current-buffer buffer
-      (set-buffer-modified-p t)
-      (save-buffer 0))
-    (kill-buffer buffer)))
 
 (provide 'init-blog)

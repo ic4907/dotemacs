@@ -48,6 +48,10 @@
   :config (progn
             (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)))
 
+(use-package expand-region
+  :defer t
+  :bind (("C-c e" . er/expand-region)
+         ("C-M-@" . er/contract-region)))
 
 ;; magit
 (use-package magit
