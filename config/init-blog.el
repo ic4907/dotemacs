@@ -28,37 +28,33 @@
 	(use-package org-install)
 	(use-package ox)
 	(use-package org-archive)
+	(setq org-src-fontify-natively t)
 	(setq org-publish-project-alist
-		  `(;; Main website at http://writequit.org
+		  `(
 			("blog"
 			 :base-directory ,org-mode-websrc-directory
-			 :base-extension "org\\|html"
+			 :base-extension "org"
 			 :publishing-directory ,org-mode-publishing-directory
 			 :publishing-function org-html-publish-to-html
 			 :with-toc nil
+			 :with-author t
+			 :with-email t
+			 :html-use-infojs t
 			 :recursive t
-			 :auto-sitemap         t
-			 :makeindex            t
-			 :html-doctype         "html5"
-			 :html-html5-fancy     t
-			 :html-preamble        org-mode-blog-preamble
-			 :html-postamble       t
-			 :html-head  "<link rel=\"stylesheet\" href=\"/css/normalize.css\" type=\"text/css\"/>\n
-            <link rel=\"stylesheet\" href=\"/css/styles.css\" type=\"text/css\"/>"
+			 :auto-sitemap t
+			 :sitemap-title "蒋大培的博客"
+			 :sitemap-filename "index.org"
+			 :html-doctype "html5"
+			 :html-html5-fancy t
+			 :html-head  "<link rel=\"stylesheet\" href=\"/css/normalize.css\" type=\"text/css\"/>"
 			 :html-head-include-default-style nil)
 			("blog-static"
-			 :base-directory       ,org-mode-websrc-directory
-			 :base-extension       "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
+			 :base-directory ,org-mode-websrc-directory
+			 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
 			 :publishing-directory ,org-mode-publishing-directory
-			 :recursive            t
-			 :publishing-function  org-publish-attachment)
+			 :recursive t
+			 :publishing-function org-publish-attachment)
 
 			("blog" :components ("blog" "blog-static"))))))
-
-(defun org-mode-blog-preamble (options)
-  "The function that creates the preamble top section for the blog.
-OPTIONS contains the property list from the org-mode export."
-  (let ((base-directory (plist-get options :base-directory)))
-    (org-babel-with-temp-filebuffer (expand-file-name "header.html" base-directory) (buffer-string))))
 
 (provide 'init-blog)
