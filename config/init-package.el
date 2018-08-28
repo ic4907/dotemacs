@@ -36,8 +36,9 @@
 (use-package rainbow-delimiters :ensure t)
 
 (defun my-clojure-mode-hook ()
-  (paredit-mode)
   (rainbow-delimiters-mode)
+  (electric-pair-mode)
+  (projectile-mode)
   (clj-refactor-mode 1)
   (yas-minor-mode 1) ; for adding require/use/import statements
   ;; This choice of keybinding leaves cider-macroexpand-1 unbound
@@ -46,7 +47,8 @@
 (use-package clojure-mode
   :ensure t
   :config (progn
-            (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)))
+           (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
+           (setq clojure-defun-style-default-indent t)))
 
 (use-package expand-region
   :defer t
@@ -98,11 +100,6 @@
   :config
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+))
 
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'smex))
-
 (use-package window-numbering
   :ensure t)
 
@@ -133,6 +130,11 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (advice-add 'swiper :after #'recenter)))
+
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'smex))
 
 (use-package exec-path-from-shell
   :ensure t
