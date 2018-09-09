@@ -7,10 +7,17 @@
 ;; projectile
 (use-package projectile
   :ensure t
+  :commands (projectile-find-file projectile-switch-project)
+  :diminish projectile-mode
+  :init
+  (use-package helm-projectile
+    :ensure t
+    :bind (("s-p" . helm-projectile-find-file)
+           ("s-P" . helm-projectile-switch-project)))
   :config
   (progn
-    (setq projectile-global-mode t
-		  projectile-completion-system 'helm
+	(projectile-global-mode t)
+    (setq projectile-completion-system 'helm
           projectile-switch-project-action 'projectile-dired
           projectile-remember-window-configs t
           projectile-use-git-grep 1)))
@@ -33,7 +40,10 @@
   :config (progn (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
                  (add-hook 'scheme-mode-hook 'paredit-mode)))
 
-(use-package clj-refactor :ensure t)
+(use-package clj-refactor
+  :diminish clj-refactor-mode
+  :config (cljr-add-keybindings-with-prefix "C-c j"))
+
 (use-package rainbow-delimiters :ensure t)
 
 (defun my-clojure-mode-hook ()
@@ -50,6 +60,10 @@
   :config (progn
            (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
            (setq clojure-defun-style-default-indent t)))
+
+(use-package cider
+  :init
+  (add-hook 'cider-mode-hook #'clj-refactor-mode))
 
 (use-package expand-region
   :defer t
