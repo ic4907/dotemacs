@@ -9,7 +9,8 @@
   :ensure t
   :config
   (progn
-    (setq projectile-completion-system 'helm
+    (setq projectile-global-mode t
+		  projectile-completion-system 'helm
           projectile-switch-project-action 'projectile-dired
           projectile-remember-window-configs t
           projectile-use-git-grep 1)))
