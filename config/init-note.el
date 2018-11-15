@@ -8,12 +8,6 @@
 (setq org-mode-publishing-directory (concat (getenv "HOME") "/Public/notes"))
 ;;(setq org-mode-publishing-directory "/ssh:root@orgdown.com:/var/www/blog")
 
-(use-package ox-reveal
-  :defer t
-  :config
-  (progn
-    (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")))
-
 (use-package org
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
@@ -39,7 +33,6 @@
 			 :with-toc nil
 			 :with-author t
 			 :with-email t
-			 :html-use-infojs t
 			 :recursive t
 			 :auto-sitemap t
 			 :sitemap-title "蒋大培的笔记"

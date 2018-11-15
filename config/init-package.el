@@ -33,12 +33,6 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (use-package exec-path-from-shell :ensure t)
 
-
-(use-package paredit
-  :ensure t
-  :config (progn (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
-                 (add-hook 'scheme-mode-hook 'paredit-mode)))
-
 (use-package clj-refactor
   :diminish clj-refactor-mode
   :config (cljr-add-keybindings-with-prefix "C-c j"))
