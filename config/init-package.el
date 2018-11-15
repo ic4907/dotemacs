@@ -57,8 +57,8 @@
 (use-package clojure-mode
   :ensure t
   :config (progn
-           (add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
-           (setq clojure-defun-style-default-indent t)))
+			(add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
+			(setq clojure-defun-style-default-indent t)))
 
 (use-package cider
   :init
@@ -95,8 +95,23 @@
             (setq js2-mode-assume-strict t)
             (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
 
-(use-package company :ensure t
-  :config (add-hook 'after-init-hook 'global-company-mode))
+(use-package css-mode
+  :defer t
+  :init
+  (add-hook 'css-mode-hook 'skewer-css-mode))
+
+(use-package json-mode :defer t)
+
+(use-package company
+  :ensure t
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq
+   company-echo-delay 0
+   company-idle-delay 0.2
+   company-minimum-prefix-length 1
+   company-tooltip-align-annotations t
+   company-tooltip-limit 20))
 
 (use-package popwin :ensure t)
 (popwin-mode 1)
