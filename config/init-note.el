@@ -8,6 +8,13 @@
 (setq org-mode-publishing-directory (concat (getenv "HOME") "/Public/notes"))
 ;;(setq org-mode-publishing-directory "/ssh:root@orgdown.com:/var/www/blog")
 
+(defun get-content
+	(x)
+	(with-temp-buffer
+	(insert-file-contents (concat org-mode-websrc-directory x))
+	(buffer-string)))
+
+
 (use-package org
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
@@ -23,6 +30,8 @@
 	(use-package ox)
 	(use-package org-archive)
 	(setq org-src-fontify-natively t)
+
+	
 	(setq org-publish-project-alist
 		  `(
 			("note"
@@ -41,7 +50,9 @@
 			 :html-doctype "html5"
 			 :exclude "thoughtworks/*"
 			 :html-html5-fancy t
-			 :html-head  "<link rel=\"stylesheet\" href=\"css/normalize.css\" type=\"text/css\"/>"
+			 :html-head  "<link rel=\"stylesheet\" href=\"/css/ic4907.css\" type=\"text/css\"/>"
+			 :html-preamble ,(get-content "templates/header.html")
+			 :html-postamble ,(get-content "templates/footer.html")
 			 :html-head-include-default-style nil)
 			("note-static"
 			 :base-directory ,org-mode-websrc-directory
