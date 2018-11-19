@@ -4,7 +4,7 @@
 (use-package htmlize
   :ensure t)
 
-(setq org-mode-websrc-directory (concat (getenv "HOME") "/Documents/notes/"))
+(setq org-mode-websrc-directory (concat (getenv "HOME") "/Library/Mobile Documents/com~apple~CloudDocs//notes/"))
 (setq org-mode-publishing-directory (concat (getenv "HOME") "/Public/notes"))
 ;;(setq org-mode-publishing-directory "/ssh:root@orgdown.com:/var/www/blog")
 
@@ -38,7 +38,7 @@
 		  '((sequence "TODO(t)" "DOING(i)" "|" "DONE(d)" "ABORT(a)")))
 
 	(setq org-todo-keyword-faces '(("TODO" . "red")
-								   ("DOIING" . "yellow")
+								   ("DOING" . "yellow")
 								   ("DONE" . "green")))
 
 	(setq org-default-notes-file (concat org-mode-websrc-directory "inbox.org"))
