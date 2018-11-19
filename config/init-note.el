@@ -32,8 +32,19 @@
 	(setq org-src-fontify-natively t)
 	(setq org-startup-indented t)
 
+	(setq org-use-fast-todo-selection t)
+
 	(setq org-todo-keywords
-		  '((sequence "TODO" "FEEDBACK" "DOING" "|" "DONE" "LATER")))
+		  '((sequence "TODO(t)" "DOING(i)" "|" "DONE(d)" "ABORT(a)")))
+
+	(setq org-todo-keyword-faces '(("TODO" . "red")
+								   ("DOIING" . "yellow")
+								   ("DONE" . "green")))
+
+	(setq org-default-notes-file (concat org-mode-websrc-directory "inbox.org"))
+
+	(load-library "find-lisp")
+	(setq org-agenda-files (find-lisp-find-files org-mode-websrc-directory "\.org$"))
 	
 	(setq org-publish-project-alist
 		  `(

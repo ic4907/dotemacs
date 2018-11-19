@@ -90,9 +90,7 @@
             (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
 
 (use-package css-mode
-  :defer t
-  :init
-  (add-hook 'css-mode-hook 'skewer-css-mode))
+  :defer t)
 
 (use-package json-mode :defer t)
 
