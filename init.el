@@ -31,7 +31,7 @@
 	("8eafb06bf98f69bfb86f0bfcbe773b44b465d234d4b95ed7fa882c99d365ebfd" default)))
  '(package-selected-packages
    (quote
-	(helm-projectile youdao-dictionary window-numbering web-mode use-package undo-tree smex smartparens rainbow-mode rainbow-delimiters projectile popwin nginx-mode magit json-mode js2-mode jazz-theme htmlize helm-themes git-gutter-fringe git flycheck exec-path-from-shell emmet-mode counsel company clj-refactor ag ace-window))))
+	(graphviz-dot-mode helm-projectile youdao-dictionary window-numbering web-mode use-package undo-tree smex smartparens rainbow-mode rainbow-delimiters projectile popwin nginx-mode magit json-mode js2-mode jazz-theme htmlize helm-themes git-gutter-fringe git flycheck exec-path-from-shell emmet-mode counsel company clj-refactor ag ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

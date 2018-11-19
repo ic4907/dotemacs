@@ -30,7 +30,10 @@
 	(use-package ox)
 	(use-package org-archive)
 	(setq org-src-fontify-natively t)
+	(setq org-startup-indented t)
 
+	(setq org-todo-keywords
+		  '((sequence "TODO" "FEEDBACK" "DOING" "|" "DONE" "LATER")))
 	
 	(setq org-publish-project-alist
 		  `(
