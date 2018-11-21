@@ -34,7 +34,8 @@
 
 	(org-babel-do-load-languages
 	 'org-babel-load-languages
-	 '((dot . t)))
+	 '((dot . t)
+	   (shell . t)))
 
 	(setq org-use-fast-todo-selection t)
 
