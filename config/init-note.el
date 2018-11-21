@@ -11,7 +11,7 @@
 (defun get-content
 	(x)
 	(with-temp-buffer
-	(insert-file-contents (concat org-mode-websrc-directory x))
+	(insert-file-contents (concat org-project-base x))
 	(buffer-string)))
 
 
@@ -45,7 +45,7 @@
 								   ("DOING" . "yellow")
 								   ("DONE" . "green")))
 
-	(setq org-default-notes-file (concat org-mode-websrc-directory "gtd/inbox.org"))
+	(setq org-default-notes-file (concat org-project-base "gtd/inbox.org"))
 
 	(setq org-agenda-files
 		  (directory-files-recursively (concat org-project-base "gtd") "\.org$"))
@@ -57,7 +57,6 @@
 			 :base-extension "org"
 			 :publishing-directory ,org-project-publish-base
 			 :publishing-function org-html-publish-to-html
-			 ;;:with-toc nil
 			 :with-author t
 			 :with-email t
 			 :recursive t
@@ -69,8 +68,6 @@
 			 :exclude "\\(thoughtworks\\|gtd\\)/.*"
 			 :html-html5-fancy t
 			 ;;:html-head  "<link rel=\"stylesheet\" href=\"/css/ic4907.css\" type=\"text/css\"/>"
-			 ;;:html-preamble ,(get-content "templates/header.html")
-			 ;;:html-postamble ,(get-content "templates/footer.html")
 			 :html-head-include-default-style nil)
 			("note-static"
 			 :base-directory ,org-project-base
