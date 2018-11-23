@@ -68,7 +68,7 @@
 			 :html-doctype "html5"
 			 :exclude "\\(thoughtworks\\|gtd\\)/.*"
 			 :html-html5-fancy t
-			 ;;:html-head  "<link rel=\"stylesheet\" href=\"/css/ic4907.css\" type=\"text/css\"/>"
+			 :html-head  "<link rel=\"stylesheet\" href=\"/css/ic4907.css\" type=\"text/css\"/>"
 			 :html-head-include-default-style nil)
 			("note-static"
 			 :base-directory ,org-project-base
