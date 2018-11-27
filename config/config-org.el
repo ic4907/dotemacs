@@ -8,32 +8,40 @@
 (setq org-project-publish-base (concat (getenv "HOME") "/Public/notes"))
 ;;(setq org-project-publish-base "/ssh:root@orgdown.com:/var/www/blog")
 
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(use-package org-capture
+  :bind (("C-c c" . org-capture))
+  :config
+  (progn
+	(setq org-capture-templates nil)))
+
 (use-package org
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
-         ("C-c b" . org-iswitchb)
-         ("C-c c" . org-capture)
-         ("C-c M-p" . org-babel-previous-src-block)
-         ("C-c M-n" . org-babel-next-src-block)
-         ("C-c S" . org-babel-previous-src-block)
-         ("C-c s" . org-babel-next-src-block))
+         ("C-c b" . org-iswitchb))
   :config
   (progn
 	(use-package org-install)
 	(use-package ox)
 	(use-package org-archive)
 	(use-package ox-reveal)
+	
 	(setq org-src-fontify-natively t)
 	(setq org-startup-indented t)
-
 	(setq org-export-with-drawers t)
+	(setq org-use-fast-todo-selection t)
+	(setq org-default-notes-file (concat org-project-base "gtd/inbox.org"))
+	(setq org-agenda-files
+		  (directory-files-recursively (concat org-project-base "gtd") "\.org$"))
 
 	(org-babel-do-load-languages
 	 'org-babel-load-languages
 	 '((dot . t)
 	   (shell . t)))
-
-	(setq org-use-fast-todo-selection t)
 
 	(setq org-todo-keywords
 		  '((sequence "TODO(t)" "DOING(i)" "|" "DONE(d)" "ABORT(a)")))
@@ -41,11 +49,6 @@
 	(setq org-todo-keyword-faces '(("TODO" . "red")
 								   ("DOING" . "yellow")
 								   ("DONE" . "green")))
-
-	(setq org-default-notes-file (concat org-project-base "gtd/inbox.org"))
-
-	(setq org-agenda-files
-		  (directory-files-recursively (concat org-project-base "gtd") "\.org$"))
 
 	(defvar orgweb-html-preamble
 	  "<div class='header'>
@@ -91,4 +94,4 @@
 
 			("note" :components ("note" "note-static"))))))
 
-(provide 'init-note)
+(provide 'config-org)

@@ -4,24 +4,15 @@
 (recentf-mode 1)
 (setq recentf-max-saved-items 512)
 
-;; projectile
 (use-package projectile
   :ensure t
-  :commands (projectile-find-file projectile-switch-project)
-  :diminish projectile-mode
-  :init
-  (use-package helm-projectile
-    :ensure t
-    :bind (("s-p" . helm-projectile-find-file)
-           ("s-P" . helm-projectile-switch-project)))
   :config
-  (progn
-    (setq projectile-completion-system 'helm
-          projectile-switch-project-action 'projectile-dired
-          projectile-remember-window-configs t
-          projectile-use-git-grep 1)))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
-(use-package ag :ensure t)
+(use-package ag
+  :ensure t)
 
 (use-package window-numbering
   :ensure t
@@ -33,12 +24,20 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (use-package exec-path-from-shell :ensure t)
 
-(use-package clj-refactor
-  :diminish clj-refactor-mode
-  :config (cljr-add-keybindings-with-prefix "C-c j"))
+;;; rainbow
+(use-package rainbow-mode
+  :ensure t
+  :defer t
+  :commands rainbow-mode
+  :init
+  (progn
+      (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+      (add-hook 'css-mode-hook 'rainbow-mode)
+      (add-hook 'web-mode-hook 'rainbow-mode)))
+(use-package rainbow-delimiters
+  :ensure t)
 
-(use-package rainbow-delimiters :ensure t)
-
+;;; clojure config
 (defun my-clojure-mode-hook ()
   (rainbow-delimiters-mode)
   (electric-pair-mode)
@@ -47,6 +46,10 @@
   (yas-minor-mode 1) ; for adding require/use/import statements
   ;; This choice of keybinding leaves cider-macroexpand-1 unbound
   (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(use-package clj-refactor
+  :diminish clj-refactor-mode
+  :config (cljr-add-keybindings-with-prefix "C-c j"))
 
 (use-package clojure-mode
   :ensure t
@@ -61,7 +64,7 @@
 (use-package expand-region
   :defer t
   :bind (("C-c e" . er/expand-region)
-         ("C-M-@" . er/contract-region)))
+         ("C-M-@" . contract-region)))
 
 ;; magit
 (use-package magit
@@ -83,6 +86,15 @@
 ;; js2 mode
 (use-package js2-mode
   :ensure t
+  :init
+  (setq js-basic-indent 2)
+  (setq-default js2-basic-indent 2
+                js2-basic-offset 2
+                js2-auto-indent-p t
+                js2-cleanup-whitespace t
+                js2-enter-indents-newline t
+                js2-indent-on-enter-key t
+                js2-global-externs (list "window" "module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "jQuery" "$"))
   :config (progn
             (setq js2-strict-missing-semi-warning nil)
             (setq js2-strict-trailing-comma-warning nil)
@@ -108,9 +120,22 @@
 (use-package popwin :ensure t)
 (popwin-mode 1)
 
-(use-package emmet-mode :ensure t)
-(add-hook 'css-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
+(use-package css-mode
+   :init
+   (setq css-indent-offset 2))
+
+ (use-package smartparens
+    :ensure t
+    :diminish smartparens-mode
+    :config
+    (add-hook 'prog-mode-hook 'smartparens-mode))
+
+(use-package emmet-mode
+  :ensure t
+  :config
+  (progn
+	(add-hook 'css-mode-hook 'emmet-mode)
+	(add-hook 'web-mode-hook 'emmet-mode)))
 
 (use-package nginx-mode :ensure t)
 
@@ -173,12 +198,8 @@
   :bind (("C-z" . undo)     ; Zap to character isn't helpful
          ("C-S-z" . redo)))
 
-(use-package ace-window
-  :ensure t
-  :init
-    (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?o))
-    (global-set-key (kbd "C-x o") 'ace-window)
-  :diminish ace-window-mode)
+(use-package smart-comment
+  :bind ("M-;" . smart-comment))
 
 
-(provide 'init-package)
+(provide 'config-package)
