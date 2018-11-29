@@ -28,7 +28,6 @@
 	(use-package org-install)
 	(use-package ox)
 	(use-package org-archive)
-	(use-package ox-reveal)
 	
 	(setq org-src-fontify-natively t)
 	(setq org-startup-indented t)
