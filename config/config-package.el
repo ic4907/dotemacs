@@ -25,23 +25,20 @@
 (use-package exec-path-from-shell :ensure t)
 
 ;;; rainbow
-(use-package rainbow-mode
-  :ensure t
-  :defer t
-  :commands rainbow-mode
-  :init
-  (progn
-      (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
-      (add-hook 'css-mode-hook 'rainbow-mode)
-      (add-hook 'web-mode-hook 'rainbow-mode)))
 (use-package rainbow-delimiters
-  :ensure t)
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
+  (add-hook 'css-mode-hook 'rainbow-mode)
+  (add-hook 'web-mode-hook 'rainbow-mode))
 
 ;;; clojure config
 (defun my-clojure-mode-hook ()
   (rainbow-delimiters-mode)
   (electric-pair-mode)
   (projectile-mode)
+  (paredit-mode)
   (clj-refactor-mode 1)
   (yas-minor-mode 1) ; for adding require/use/import statements
   ;; This choice of keybinding leaves cider-macroexpand-1 unbound
@@ -53,18 +50,30 @@
 
 (use-package clojure-mode
   :ensure t
+  :init
+  (add-hook 'clojure-mode-hook #'paredit-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
   :config (progn
 			(add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
 			(setq clojure-defun-style-default-indent t)))
 
 (use-package cider
   :init
-  (add-hook 'cider-mode-hook #'clj-refactor-mode))
+  (add-hook 'cider-mode-hook #'clj-refactor-mode)
+  (add-hook 'cider-mode-hook #'company-mode)
+  (add-hook 'cider-mode-hook #'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook #'company-mode)
+  (add-hook 'cider-repl-mode-hook #'eldoc-mode)
+  :diminish subword-mode
+  :config
+  (setq nrepl-log-messages t
+        cider-repl-display-in-current-window t
+        cider-repl-use-clojure-font-lock t
+        cider-prompt-save-file-on-load 'always-save
+        cider-font-lock-dynamically '(macro core function var)
+        cider-overlays-use-font-lock t)
+  (cider-repl-toggle-pretty-printing))
 
-(use-package expand-region
-  :defer t
-  :bind (("C-c e" . er/expand-region)
-         ("C-M-@" . contract-region)))
 
 ;; magit
 (use-package magit
@@ -73,6 +82,7 @@
   (progn
     (setq magit-push-always-verify nil)
     (setq magit-revert-buffers t)))
+
 
 ;; web mode
 (use-package web-mode
@@ -106,16 +116,28 @@
 
 (use-package json-mode :defer t)
 
-(use-package company
+(use-package paredit
   :ensure t
   :config
-  (add-hook 'after-init-hook 'global-company-mode)
-  (setq
-   company-echo-delay 0
-   company-idle-delay 0.2
-   company-minimum-prefix-length 1
-   company-tooltip-align-annotations t
-   company-tooltip-limit 20))
+  (bind-keys :map paredit-mode-map
+             ("C-h" . paredit-backward-delete)))
+
+(use-package company
+  :config
+  (global-company-mode)
+  (setq company-idle-delay 0.1
+        company-minimum-prefix-length 2
+        company-selection-wrap-around t)
+
+  (bind-keys :map company-mode-map
+             ("C-i" . company-complete))
+  (bind-keys :map company-active-map
+             ("C-n" . company-select-next)
+             ("C-p" . company-select-previous)
+             ("C-s" . company-search-words-regexp))
+  (bind-keys :map company-search-map
+             ("C-n" . company-select-next)
+             ("C-p" . company-select-previous)))
 
 (use-package popwin :ensure t)
 (popwin-mode 1)
@@ -176,11 +198,6 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (advice-add 'swiper :after #'recenter)))
-
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'smex))
 
 (use-package exec-path-from-shell
   :ensure t
