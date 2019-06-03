@@ -13,3 +13,4 @@ semanticdb/
 .org-id-location
 smex-items
 tramp
+init.el
