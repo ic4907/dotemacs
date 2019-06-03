@@ -1,6 +1,8 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode 1)
 
+(setq visible-bell 0)
+
 ;; fullscreen
 (defun toggle-fullscreen ()
   "Toggle full screen"
