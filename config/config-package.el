@@ -22,7 +22,6 @@
 
 ;; shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(use-package exec-path-from-shell :ensure t)
 
 ;;; rainbow
 (use-package rainbow-delimiters
