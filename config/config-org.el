@@ -28,16 +28,13 @@
 	(use-package org-install)
 	(use-package ox)
 	(use-package org-archive)
-
-	
-	
 	(setq org-src-fontify-natively t)
 	(setq org-startup-indented t)
 	(setq org-export-with-drawers t)
 	(setq org-use-fast-todo-selection t)
-	(setq org-default-notes-file (concat org-project-base "gtd/inbox.org"))
-	(setq org-agenda-files
-		  (directory-files-recursively (concat org-project-base "gtd") "\.org$"))
+	;; (setq org-default-notes-file (concat org-project-base "gtd/inbox.org"))
+	;; (setq org-agenda-files
+	;;	  (directory-files-recursively (concat org-project-base "gtd") "\.org$"))
 
 	(org-babel-do-load-languages
 	 'org-babel-load-languages
@@ -93,6 +90,6 @@
 			 :recursive t
 			 :publishing-function org-publish-attachment)
 
-			("note" :components ("note" "note-static"))))))
+			("notebook" :components ("note" "note-static"))))))
 
 (provide 'config-org)

@@ -13,5 +13,6 @@ semanticdb/
 .org-id-location
 smex-items
 tramp
-init.el
+transient/history.el
+custom.el
 transient/history.el

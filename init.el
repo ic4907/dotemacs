@@ -2,7 +2,7 @@
 
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")
-                         ("melpa"     . "http://melpa.org/packages/")))                     
+                         ("melpa"     . "http://stable.melpa.org/packages/")))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -15,3 +15,6 @@
 (require 'config-gui)
 (require 'config-org)
 (require 'config-package)
+
+(setq custom-file
+	  (concat user-emacs-directory "/custom.el"))
