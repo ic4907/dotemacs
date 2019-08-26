@@ -1,7 +1,9 @@
-(use-package jazz-theme
-  :ensure t
-  :init
-  (load-theme 'jazz t))
+;; (use-package jazz-theme
+;;   :ensure t
+;;   :init
+;;   (load-theme 'jazz t))
+
+(load-theme 'adwaita)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
