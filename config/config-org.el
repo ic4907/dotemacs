@@ -1,12 +1,13 @@
+(require 'org)
 (require 'ox-html)
 (require 'ox-publish)
+;;(require 'ox-rss)
 
 (use-package htmlize
   :ensure t)
 
-(setq org-project-base (concat (getenv "HOME") "/Documents/notes/"))
-(setq org-project-publish-base (concat (getenv "HOME") "/Public/notes"))
-;;(setq org-project-publish-base "/ssh:root@orgdown.com:/var/www/blog")
+(setq my-site-project-path (concat (getenv "HOME") "/Documents/notes/"))
+(setq my-site-publish-path (concat (getenv "HOME") "/Public/notes/"))
 
 (use-package org-bullets
   :ensure t
@@ -48,44 +49,60 @@
 								   ("DOING" . "yellow")
 								   ("DONE" . "green")))
 
-	(defvar orgweb-html-preamble
-	  "<div class='header'>
-           <div class='left-items'>
-               <a href='/'>Home</a>
-               <a href='/about-me.html'>About Me</a>
-               <a href='/sitemap.html'>Sitemap</a>
-           </div>
-           <div class='right-items'>
-               <a href='https://www.linkedin.com/in/wang-yonggang-90a27499/' target='_blank'>Linkedin</a>
-               <a href='https://github.com/ic4907' target='_blank'>Github</a>
-           </div>
-	  </div>
-	  ")
+	(setq org-html-divs '((preamble "header" "top")
+                      (content "main" "content")
+                      (postamble "footer" "postamble"))
+      org-html-container-element "section"
+      org-html-metadata-timestamp-format "%Y-%m-%d"
+      org-html-checkbox-type 'html
+      org-html-html5-fancy t
+      org-html-htmlize-output-type 'css
+      org-html-head-include-default-style t
+      org-html-head-include-scripts t
+      org-html-doctype "html5"
+      org-html-home/up-format "%s\n%s\n")
+
+	(setq orgweb-html-preamble "<header id=\"top\" class=\"status\">
+<h1 class=\"title\"><a href=\"/\">将大培的博客 </a>
+  <p class=\"subtitle\">何逊而今渐老，都忘却春风词笔。</p>
+</h1>
+<nav>
+  <a href=\"/\">About</a>
+  <a href=\"/cv\">CV</a>
+  <a href=\"/sitemap.html\">Blog</a>
+</nav>
+</header>")
+
+	(setq orgweb-html-postamble "<div>
+<p>Copyright 2019 by Jiang Dapei.
+Proudly published with Emacs and Org mode
+</div>")
 	
 	(setq org-publish-project-alist
 		  `(
 			("note"
-			 :base-directory ,org-project-base
+			 :base-directory ,my-site-project-path
 			 :base-extension "org"
-			 :publishing-directory ,org-project-publish-base
+			 :publishing-directory ,my-site-publish-path
 			 :publishing-function org-html-publish-to-html
 			 :with-author t
 			 :with-email t
 			 :with-creator t
 			 :recursive t
-			 :auto-sitemap t
 			 :email "shalir@outlook.com"
+			 :auto-sitemap t
 			 :sitemap-filename "sitemap.org"
 			 :html-doctype "html5"
 			 :exclude "\\(thoughtworks\\|gtd\\)/.*"
 			 :html-html5-fancy t
 			 :html-head  "<link rel=\"stylesheet\" href=\"/css/ic4907.css\" type=\"text/css\"/>"
 			 :html-preamble ,orgweb-html-preamble
+			 :html-postamble ,orgweb-html-postamble
 			 :html-head-include-default-style nil)
 			("note-static"
-			 :base-directory ,org-project-base
+			 :base-directory ,my-site-project-path
 			 :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|svg"
-			 :publishing-directory ,org-project-publish-base
+			 :publishing-directory ,my-site-publish-path
 			 :exclude "\\(thoughtworks\\|gtd\\)/.*"
 			 :recursive t
 			 :publishing-function org-publish-attachment)
