@@ -75,7 +75,7 @@
 
 	(setq orgweb-html-postamble "<div>
 <p>Copyright 2019 by Jiang Dapei.
-Proudly published with Emacs and Org mode
+Proudly published with <a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> and <a href=\"https://orgmode.org/\">Org Mode</a>
 </div>")
 	
 	(setq org-publish-project-alist
