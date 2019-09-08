@@ -1,0 +1,5 @@
+#+TITLE: My Emacs Config
+
+this is my emacs config repo, it has include some feature like
+- org mode config
+- better ui config
