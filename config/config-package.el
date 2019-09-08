@@ -24,6 +24,9 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;;; rainbow
+(use-package rainbow-mode
+  :ensure t)
+
 (use-package rainbow-delimiters
   :ensure t
   :init
@@ -31,48 +34,6 @@
   (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
   (add-hook 'css-mode-hook 'rainbow-mode)
   (add-hook 'web-mode-hook 'rainbow-mode))
-
-;;; clojure config
-(defun my-clojure-mode-hook ()
-  (rainbow-delimiters-mode)
-  (electric-pair-mode)
-  (projectile-mode)
-  (paredit-mode)
-  (clj-refactor-mode 1)
-  (yas-minor-mode 1) ; for adding require/use/import statements
-  ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-  (cljr-add-keybindings-with-prefix "C-c C-m"))
-
-(use-package clj-refactor
-  :diminish clj-refactor-mode
-  :config (cljr-add-keybindings-with-prefix "C-c j"))
-
-(use-package clojure-mode
-  :ensure t
-  :init
-  (add-hook 'clojure-mode-hook #'paredit-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-  :config (progn
-			(add-hook 'clojure-mode-hook 'my-clojure-mode-hook)
-			(setq clojure-defun-style-default-indent t)))
-
-(use-package cider
-  :init
-  (add-hook 'cider-mode-hook #'clj-refactor-mode)
-  (add-hook 'cider-mode-hook #'company-mode)
-  (add-hook 'cider-mode-hook #'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook #'company-mode)
-  (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-  :diminish subword-mode
-  :config
-  (setq nrepl-log-messages t
-        cider-repl-display-in-current-window t
-        cider-repl-use-clojure-font-lock t
-        cider-prompt-save-file-on-load 'always-save
-        cider-font-lock-dynamically '(macro core function var)
-        cider-overlays-use-font-lock t)
-  (cider-repl-toggle-pretty-printing))
-
 
 ;; magit
 (use-package magit
@@ -122,6 +83,7 @@
              ("C-h" . paredit-backward-delete)))
 
 (use-package company
+  :ensure t
   :config
   (global-company-mode)
   (setq company-idle-delay 0.1
