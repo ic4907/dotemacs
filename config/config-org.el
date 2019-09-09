@@ -62,6 +62,15 @@
 	  "<div class=\"site-info\">
          <p class=\"copyright\">Jiang Dapei • 2019</p>
          <p class=\"generator\">Proudly published with <a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> and <a href=\"https://orgmode.org/\">Org Mode</a></p>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-147457596-1\"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147457596-1');
+</script>
       </div>")
 
 	(setq orgweb-head  "<link rel=\"stylesheet\" href=\"/css/style.css\" type=\"text/css\"/>")
