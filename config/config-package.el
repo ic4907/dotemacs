@@ -159,7 +159,6 @@
     (show-paren-mode t)))
 
 (use-package smart-comment
-  :ensure t
   :bind ("M-;" . smart-comment))
 
 

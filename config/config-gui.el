@@ -1,4 +1,6 @@
-(load-theme 'adwaita)
+(use-package dracula-theme
+  :init (load-theme 'dracula t)
+  :ensure t)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
@@ -34,12 +36,6 @@
   (set-fontset-font (frame-parameter nil 'font)
                     charset
                     (font-spec :family "Hiragino Sans GB" :size 14.4)))
-
-(use-package doom-themes
-  :ensure t
-  :config
-  (load-theme 'doom-one t)
-  (doom-themes-visual-bell-config))
 
 (custom-set-faces
  '(rainbow-delimiters-depth-1-face ((t (:foreground "dark orange"))))
