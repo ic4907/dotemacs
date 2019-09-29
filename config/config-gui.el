@@ -1,8 +1,3 @@
-;; (use-package jazz-theme
-;;   :ensure t
-;;   :init
-;;   (load-theme 'jazz t))
-
 (load-theme 'adwaita)
 
 (when (fboundp 'tool-bar-mode)
@@ -34,11 +29,17 @@
       mouse-yank-at-point t)
 
 (set-frame-font "Monaco:pixelsize=12")
+
 (dolist (charset '(han kana symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
                     charset
                     (font-spec :family "Hiragino Sans GB" :size 14.4)))
 
+(use-package doom-themes
+  :ensure t
+  :config
+  (load-theme 'doom-one t)
+  (doom-themes-visual-bell-config))
 
 (custom-set-faces
  '(rainbow-delimiters-depth-1-face ((t (:foreground "dark orange"))))

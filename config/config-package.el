@@ -52,27 +52,6 @@
             (setq-default web-mode-comment-formats (remove '("javascript" . "/*") web-mode-comment-formats))
             (add-to-list 'web-mode-comment-formats '("javascript" . "//"))))
 
-;; js2 mode
-(use-package js2-mode
-  :ensure t
-  :init
-  (setq js-basic-indent 2)
-  (setq-default js2-basic-indent 2
-                js2-basic-offset 2
-                js2-auto-indent-p t
-                js2-cleanup-whitespace t
-                js2-enter-indents-newline t
-                js2-indent-on-enter-key t
-                js2-global-externs (list "window" "module" "require" "buster" "sinon" "assert" "refute" "setTimeout" "clearTimeout" "setInterval" "clearInterval" "location" "__dirname" "console" "JSON" "jQuery" "$"))
-  :config (progn
-            (setq js2-strict-missing-semi-warning nil)
-            (setq js2-strict-trailing-comma-warning nil)
-            (setq js2-mode-assume-strict t)
-            (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))))
-
-(use-package css-mode
-  :defer t)
-
 (use-package json-mode
   :defer t)
 
@@ -99,12 +78,13 @@
   (popwin-mode 1))
 
 (use-package css-mode
-   :init
-   (setq css-indent-offset 2))
+  :defer t
+  :init
+  (setq css-indent-offset 2))
 
 (use-package smartparens
-    :ensure t
-    :diminish smartparens-mode)
+  :ensure t
+  :diminish smartparens-mode)
 
 (use-package emmet-mode
   :ensure t
@@ -169,7 +149,17 @@
   :bind (("C-z" . undo)     ; Zap to character isn't helpful
          ("C-S-z" . redo)))
 
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (progn
+    (require 'smartparens-config)
+    (smartparens-global-mode 1)
+    (show-paren-mode t)))
+
 (use-package smart-comment
+  :ensure t
   :bind ("M-;" . smart-comment))
 
 
