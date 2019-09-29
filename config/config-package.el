@@ -9,7 +9,7 @@
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
+  (projectile-mode 1))
 
 (use-package ag
   :ensure t)
@@ -43,7 +43,6 @@
     (setq magit-push-always-verify nil)
     (setq magit-revert-buffers t)))
 
-
 ;; web mode
 (use-package web-mode
   :ensure t
@@ -74,18 +73,12 @@
 (use-package css-mode
   :defer t)
 
-(use-package json-mode :defer t)
-
-(use-package paredit
-  :ensure t
-  :config
-  (bind-keys :map paredit-mode-map
-             ("C-h" . paredit-backward-delete)))
+(use-package json-mode
+  :defer t)
 
 (use-package company
   :ensure t
   :config
-  (global-company-mode)
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 2
         company-selection-wrap-around t)
@@ -100,18 +93,18 @@
              ("C-n" . company-select-next)
              ("C-p" . company-select-previous)))
 
-(use-package popwin :ensure t)
-(popwin-mode 1)
+(use-package popwin
+  :ensure t
+  :config
+  (popwin-mode 1))
 
 (use-package css-mode
    :init
    (setq css-indent-offset 2))
 
- (use-package smartparens
+(use-package smartparens
     :ensure t
-    :diminish smartparens-mode
-    :config
-    (add-hook 'prog-mode-hook 'smartparens-mode))
+    :diminish smartparens-mode)
 
 (use-package emmet-mode
   :ensure t
