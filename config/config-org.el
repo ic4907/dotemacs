@@ -99,7 +99,7 @@
 			 :publishing-function org-html-publish-to-html
 			 :auto-sitemap t
 			 :makeindex t
-			 :sitemap-title ""
+			 :sitemap-title "Blog Post"
 			 :html-head  ,blog-head
 			 :html-preamble ,blog-html-preamble
 			 :html-postamble ,blog-html-postamble)
