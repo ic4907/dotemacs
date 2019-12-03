@@ -18,6 +18,7 @@
   (global-visual-line-mode t)
   (progn
 	(setq auto-save-default nil)
+	(setq visible-bell nil)
 	(setq make-backup-files nil)
 	(setq create-lockfiles nil)
 	(setq debug-on-error nil)))
@@ -48,4 +49,3 @@
  '(rainbow-delimiters-depth-8-face ((t (:foreground "sienna1")))))
 
 (provide 'config-gui)
-
