@@ -20,6 +20,9 @@
   (progn
 	(setq org-capture-templates nil)))
 
+(use-package graphviz-dot-mode
+  :ensure t)
+
 (use-package org
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
@@ -30,6 +33,8 @@
 	 'org-babel-load-languages
 	 '((dot . t)
 	   (shell . t)))
+
+	(add-to-list 'org-src-lang-modes (quote ("dot" . graphviz-dot)))
 
 	(setq org-html-divs '((preamble "header" "preamble")
 						  (content "main" "content")
