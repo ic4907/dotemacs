@@ -64,11 +64,13 @@
 
 (use-package company
   :ensure t
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
   :config
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 2
         company-selection-wrap-around t)
-
+  
   (bind-keys :map company-mode-map
              ("C-i" . company-complete))
   (bind-keys :map company-active-map

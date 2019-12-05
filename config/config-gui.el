@@ -1,10 +1,4 @@
-;; (use-package dracula-theme
-;;   :init (load-theme 'dracula t)
-;;   :ensure t)
-
 (load-theme 'adwaita t)
-
-(global-hl-line-mode -1)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
