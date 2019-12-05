@@ -14,6 +14,13 @@
 (use-package ag
   :ensure t)
 
+(use-package yaml-mode
+  :ensure t
+  :init
+  (add-hook 'yaml-mode-hook
+          (lambda ()
+            (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
+
 (use-package window-numbering
   :ensure t
   :config
