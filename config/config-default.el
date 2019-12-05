@@ -2,7 +2,10 @@
 (global-auto-revert-mode 1)
 
 (setq visible-bell 1)
-(setq-default tab-always-indent 'complete)
+
+(setq tab-always-indent nil)
+(setq indent-tabs-mode t)   ;; for tab-based indentation
+(setq indent-tabs-mode nil) ;; for space-based indentation
 
 ;; fullscreen
 (defun toggle-fullscreen ()
