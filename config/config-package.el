@@ -44,6 +44,7 @@
 
 ;; magit
 (use-package magit
+  ;; for git config
   :ensure t
   :config
   (progn
