@@ -1,4 +1,4 @@
-(load-theme 'adwaita t)
+(load-theme 'dracula t)
 
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
