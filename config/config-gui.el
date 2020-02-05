@@ -14,6 +14,7 @@
   (blink-cursor-mode 1)
   (delete-selection-mode t)
   (global-visual-line-mode t)
+  (global-linum-mode t)
   (progn
 	(setq auto-save-default nil)
 	(setq visible-bell nil)
@@ -29,12 +30,12 @@
       apropos-do-all t
       mouse-yank-at-point t)
 
-(set-frame-font "Monaco:pixelsize=12")
+(set-frame-font "JetBrains Mono:pixelsize=14")
 
 (dolist (charset '(han kana symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
                     charset
-                    (font-spec :family "Hiragino Sans GB" :size 14.4)))
+                    (font-spec :family "Hiragino Sans GB" :size 16.3)))
 
 (custom-set-faces
  '(rainbow-delimiters-depth-1-face ((t (:foreground "dark orange"))))
