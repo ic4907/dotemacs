@@ -1,5 +1,3 @@
-(load-theme 'dracula t)
-
 (when (fboundp 'tool-bar-mode)
   (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode)
@@ -20,15 +18,17 @@
 	(setq visible-bell nil)
 	(setq make-backup-files nil)
 	(setq create-lockfiles nil)
-	(setq debug-on-error nil)))
+	(setq debug-on-error nil)
+	(setq-default tab-width 4)
+	(setq x-select-enable-clipboard t
+		  x-select-enable-primary t
+		  save-interprogram-paste-before-kill t
+		  apropos-do-all t
+		  mouse-yank-at-point t)))
 
-(setq-default tab-width 4)
-
-(setq x-select-enable-clipboard t
-      x-select-enable-primary t
-      save-interprogram-paste-before-kill t
-      apropos-do-all t
-      mouse-yank-at-point t)
+(use-package dracula-theme
+  :config
+  (load-theme 'dracula t))
 
 (set-frame-font "JetBrains Mono:pixelsize=14")
 

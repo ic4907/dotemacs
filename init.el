@@ -2,7 +2,7 @@
 
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")
-                         ("melpa"     . "https://stable.melpa.org/packages/")))
+                         ("melpa"     . "http://elpa.emacs-china.org/melpa/")))
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
