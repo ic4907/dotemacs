@@ -15,6 +15,9 @@
    nil 'fullscreen
    (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
 
+(when (string= system-type "darwin")       
+  (setq dired-use-ls-dired nil))
+
 (global-set-key (kbd "<s-return>") 'toggle-fullscreen)
 
 (prefer-coding-system 'utf-8)

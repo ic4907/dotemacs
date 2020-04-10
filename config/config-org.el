@@ -3,8 +3,8 @@
 (require 'ox-publish)
 ;;(require 'ox-rss)
 
-(use-package htmlize
-  :ensure t)
+;; (use-package htmlize
+;;   :ensure t)
 
 (setq blog-source-folder (concat (getenv "HOME") "/Documents/blog/"))
 (setq blog-target-folder (concat (getenv "HOME") "/Public/blog/"))
