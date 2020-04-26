@@ -1,18 +1,9 @@
 (require 'org)
 (require 'ox-html)
 (require 'ox-publish)
-;;(require 'ox-rss)
-
-;; (use-package htmlize
-;;   :ensure t)
 
 (setq blog-source-folder (concat (getenv "HOME") "/Documents/blog/"))
 (setq blog-target-folder (concat (getenv "HOME") "/Public/blog/"))
-
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package org-capture
   :bind (("C-c c" . org-capture))
@@ -22,6 +13,8 @@
 
 (use-package graphviz-dot-mode
   :ensure t)
+
+(setq org-agenda-files '("/Users/ygwang/Documents/notes"))
 
 (use-package org
   :bind (("C-c l" . org-store-link)
@@ -66,6 +59,7 @@
 		  "<div class=\"site-info\">
          <p class=\"copyright\">Jiang Dapei • 2019</p>
          <p class=\"generator\">Proudly published with <a href=\"https://www.gnu.org/software/emacs/\">Emacs</a> and <a href=\"https://orgmode.org/\">Org Mode</a></p>
+		 <p><a href=\"http://www.beian.miit.gov.cn/\">陕ICP备20001590号-1</a></p>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src=\"https://www.googletagmanager.com/gtag/js?id=UA-147457596-1\"></script>
 <script>
