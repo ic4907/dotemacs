@@ -42,21 +42,6 @@
   (with-temp-buffer (insert-file inkresi/postamble-template)
 					(buffer-string)))
 
-(defun inkresi/sitemap (title list)
-  (setq site-title (concat "#+TITLE: " title))
-  (mapconcat
-   'identity
-   (list site-title
-	 (org-list-to-subtree list nil '(:istart "** "))
-	 "\n\n")))
-  ;; (let ((site-title (concat "#+TITLE: " title)))
-  ;; 	(mapconcat
-  ;; 	 'identity
-  ;; 	 '(site-title
-  ;;      (org-list-to-subtree list nil '(:istart "** "))
-  ;;      "#+OPTIONS: title:nil num:nil")
-;; 	 "\n\n")))
-
 (setq org-publish-project-alist
 	  `(("page"
 		 :base-directory ,inkresi/source-folder
@@ -82,7 +67,6 @@
 		 :exclude "level-.*\\|.*\.draft\.org"
 		 :publishing-function org-html-publish-to-html
 		 :auto-sitemap t
-		 :sitemap-function inkresi/sitemap
 		 :sitemap-title ,(format "Blog posts - %s" inkresi/blog-title)
 		 :html-head  ,inkresi/blog-head
 		 :html-preamble ,(inkresi/preamble nil "")
