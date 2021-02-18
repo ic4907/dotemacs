@@ -1,3 +1,5 @@
+(require 'org-tempo)
+
 (setenv "BLOG_HOME" (concat (getenv "HOME") "/Documents/blog/"))
 
 (setq export-config-file (concat (getenv "BLOG_HOME") "export.el"))
