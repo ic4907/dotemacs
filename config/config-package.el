@@ -51,15 +51,6 @@
     (setq magit-push-always-verify nil)
     (setq magit-revert-buffers t)))
 
-;; web mode
-(use-package web-mode
-  :ensure t
-  :config (progn
-            (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-            (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-            (setq-default web-mode-comment-formats (remove '("javascript" . "/*") web-mode-comment-formats))
-            (add-to-list 'web-mode-comment-formats '("javascript" . "//"))))
-
 (use-package json-mode
   :defer t)
 
@@ -84,24 +75,6 @@
   :ensure t
   :config
   (popwin-mode 1))
-
-(use-package css-mode
-  :defer t
-  :init
-  (setq css-indent-offset 2))
-
-(use-package smartparens
-  :ensure t
-  :diminish smartparens-mode)
-
-(use-package emmet-mode
-  :ensure t
-  :config
-  (progn
-	(add-hook 'css-mode-hook 'emmet-mode)
-	(add-hook 'web-mode-hook 'emmet-mode)))
-
-(use-package nginx-mode :ensure t)
 
 (use-package youdao-dictionary
   :ensure t
@@ -167,61 +140,7 @@
     (show-paren-mode t)))
 
 (use-package smart-comment
+  :ensure t
   :bind ("M-;" . smart-comment))
-
-(use-package web-mode
-  :ensure t
-  :mode ("\\.html$" . web-mode)
-  :init
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                (setup-tide-mode))))
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq js-indent-level 2)
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-auto-expanding t)
-  (setq web-mode-enable-css-colorization t)
-  (add-hook 'web-mode-hook 'electric-pair-mode))
-
-(use-package web-beautify
-  :ensure t
-  :commands (web-beautify-css
-             web-beautify-css-buffer
-             web-beautify-html
-             web-beautify-html-buffer
-             web-beautify-js
-             web-beautify-js-buffer))
-
-(use-package tide
-  :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save))
-  :config
-  (defun setup-tide-mode ()
-	(interactive)
-	(tide-setup)
-	(flycheck-mode +1)
-	(setq flycheck-check-syntax-automatically '(save mode-enabled))
-	(eldoc-mode +1)
-	(tide-hl-identifier-mode +1)
-	;; company is an optional dependency. You have to
-	;; install it separately via package-install
-	;; `M-x package-install [ret] company`
-	(company-mode +1))
-
-  ;; aligns annotation to the right hand side
-  (setq company-tooltip-align-annotations t)
-
-  ;; formats the buffer before saving
-  (add-hook 'before-save-hook 'tide-format-before-save)
-
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
-
 
 (provide 'config-package)

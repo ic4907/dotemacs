@@ -18,3 +18,4 @@ custom.el
 transient/history.el
 games/
 .org-id-locations
+org-roam.db
