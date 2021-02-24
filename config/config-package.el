@@ -96,7 +96,7 @@
     (ivy-mode 1)
     (setq ivy-use-virtual-buffers t)
     (setq enable-recursive-minibuffers t)
-    (global-set-key "\C-s" 'swiper)
+    ;; (global-set-key "\C-s" 'swiper)
     (global-set-key (kbd "C-c C-r") 'ivy-resume)
 	(global-set-key (kbd "<f6>") 'ivy-resume)
     (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -113,6 +113,8 @@
     (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (advice-add 'swiper :after #'recenter)))
+
+;; (define-key global-map (kbd "C-s") 'swiper)
 
 (use-package exec-path-from-shell
   :ensure t

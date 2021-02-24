@@ -1,6 +1,9 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (global-auto-revert-mode 1)
 
+(setq default-directory "~/")
+(setq command-line-default-directory "~/")
+
 (setq visible-bell 1)
 
 (setq tab-always-indent nil)

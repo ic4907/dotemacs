@@ -1,4 +1,4 @@
-(setenv "ROAM_HOME" (concat (getenv "HOME") "/Documents/roam/"))
+(setenv "ROAM_HOME" (concat (getenv "HOME") "/Documents/blog/articles"))
 
 (use-package org-roam
   :ensure t
@@ -15,23 +15,23 @@
               (("C-c n i" . org-roam-insert))
               (("C-c n I" . org-roam-insert-immediate))))
 
-(use-package org-roam-server
-  :ensure t
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-        org-roam-server-port 8010
-        org-roam-server-authenticate nil
-        org-roam-server-export-inline-images t
-        org-roam-server-serve-files nil
-        org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
-        org-roam-server-network-poll t
-        org-roam-server-network-arrows nil
-        org-roam-server-network-label-truncate t
-        org-roam-server-network-label-truncate-length 60
-        org-roam-server-network-label-wrap-length 20))
+;; (use-package org-roam-server
+;;   :ensure t
+;;   :config
+;;   (setq org-roam-server-host "127.0.0.1"
+;;         org-roam-server-port 8010
+;;         org-roam-server-authenticate nil
+;;         org-roam-server-export-inline-images t
+;;         org-roam-server-serve-files nil
+;;         org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+;;         org-roam-server-network-poll t
+;;         org-roam-server-network-arrows nil
+;;         org-roam-server-network-label-truncate t
+;;         org-roam-server-network-label-truncate-length 60
+;;         org-roam-server-network-label-wrap-length 20))
 
 (require 'org-roam-protocol)
-(org-roam-server-mode)
+;; (org-roam-server-mode)
 
 (setq org-roam-capture-ref-templates
       '(("r" "ref" plain (function org-roam-capture--get-point)
@@ -40,7 +40,7 @@
          :head "#+title: ${title}\n#+roam_key: ${ref}\n"
          :unnarrowed t)))
 
-(server-start)
+(server-mode)
 (require 'org-protocol)
 
 (provide 'config-roam)

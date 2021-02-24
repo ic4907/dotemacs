@@ -9,5 +9,11 @@
 
 (load-file export-config-file)
 
+(use-package org-bullets
+  :ensure t
+  :config
+  (progn
+	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+
 (provide 'config-org)
 
