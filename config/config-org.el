@@ -11,9 +11,10 @@
 
 (use-package org-bullets
   :ensure t
-  :config
-  (progn
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+  :hook (org-mode . org-bullets-mode))
+
+(setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+						  (sequence "⚑ WAITING(w)" "|")
+						  (sequence "|" "✘ CANCELED(c)")))
 
 (provide 'config-org)
-
