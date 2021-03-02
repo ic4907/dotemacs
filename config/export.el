@@ -42,6 +42,15 @@
   (with-temp-buffer (insert-file inkresi/postamble-template)
 					(buffer-string)))
 
+(setq org-plantuml-jar-path
+      (expand-file-name "~/Documents/tools/plantuml.jar"))
+
+;; active Org-babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(;; other Babel languages
+   (plantuml . t)))
+
 (setq org-publish-project-alist
 	  `(("page"
 		 :base-directory ,inkresi/source-folder
