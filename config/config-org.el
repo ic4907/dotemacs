@@ -20,4 +20,12 @@
 (server-mode)
 (require 'org-protocol)
 
+(use-package org
+  :commands (org-mode org-capture org-agenda orgtbl-mode)
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+    (global-set-key (kbd "C-c c") 'org-capture)
+    (global-set-key (kbd "C-c a") 'org-agenda)))
+
 (provide 'config-org)
