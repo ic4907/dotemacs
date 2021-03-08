@@ -11,9 +11,21 @@
 
 (use-package org-bullets
   :ensure t
-  :config
+  :hook (org-mode . org-bullets-mode))
+
+(setq org-todo-keywords '((sequence "☛ TODO(t)" "|" "✔ DONE(d)")
+						  (sequence "⚑ WAITING(w)" "|")
+						  (sequence "|" "✘ CANCELED(c)")))
+
+(server-mode)
+(require 'org-protocol)
+
+(use-package org
+  :commands (org-mode org-capture org-agenda orgtbl-mode)
+  :init
   (progn
-	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+    (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+    (global-set-key (kbd "C-c c") 'org-capture)
+    (global-set-key (kbd "C-c a") 'org-agenda)))
 
 (provide 'config-org)
-
