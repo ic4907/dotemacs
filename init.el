@@ -15,7 +15,6 @@
 (require 'config-gui)
 (require 'config-org)
 (require 'config-package)
-(require 'config-roam)
 
 (setq custom-file
 	  (concat user-emacs-directory "/custom.el"))

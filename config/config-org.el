@@ -17,4 +17,7 @@
 						  (sequence "⚑ WAITING(w)" "|")
 						  (sequence "|" "✘ CANCELED(c)")))
 
+(server-mode)
+(require 'org-protocol)
+
 (provide 'config-org)
