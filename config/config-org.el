@@ -24,21 +24,22 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
-  (setq org-refile-targets '(((concat gtd-path "gtd.org") :maxlevel . 3)
-							 ((concat gtd-path "someday.org") :level . 1)
-							 ((concat gtd-path "tickler.org") :maxlevel . 2)))
-  (setq org-agenda-files '((concat gtd-path "inbox.org")
-						   (concat gtd-path "gtd.org")
-						   (concat gtd-path "tickler.org")))
+  (setq org-refile-targets '(("~/Documents/inbox/gtd.org" :maxlevel . 3)
+							 ("~/Documents/inbox/someday.org" :level . 1)
+							 ("~/Documents/inbox/tickler.org" :maxlevel . 2)))
+  (setq org-agenda-files '("~/Documents/inbox/inbox.org"
+						   "~/Documents/inbox/gtd.org"
+						   "~/Documents/inbox/tickler.org"))
+  (setq org-plantuml-jar-path
+		(expand-file-name "~/Documents/tools/plantuml.jar"))
+  (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+  
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
-								 (file+headline (concat gtd-path "inbox.org") "Tasks")
+								 (file+headline "~/Documents/inbox/inbox.org" "Tasks")
 								 "* TODO %i%?")
 								("T" "Tickler" entry
-								 (file+headline (concat gtd-path "tickler.org") "Tickler")
+								 (file+headline "~/Documents/inbox/tickler.org" "Tickler")
 								 "* %i%? \n %U"))))
-
-(setq org-plantuml-jar-path (expand-file-name "~/Documents/tools/plantuml.jar"))
-(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 (provide 'config-org)

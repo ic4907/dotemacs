@@ -115,8 +115,6 @@
     (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
     (advice-add 'swiper :after #'recenter)))
 
-;; (define-key global-map (kbd "C-s") 'swiper)
-
 (use-package exec-path-from-shell
   :ensure t
   :config
