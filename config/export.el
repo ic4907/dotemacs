@@ -1,5 +1,3 @@
-(require 'org)
-
 (setq org-html-htmlize-output-type `nil)
 
 (setq org-html-divs '((preamble "header" "preamble")
