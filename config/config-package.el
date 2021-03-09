@@ -57,6 +57,7 @@
 (use-package company
   :ensure t
   :config
+  (add-hook 'after-init-hook 'global-company-mode)
   (setq company-idle-delay 0.1
         company-minimum-prefix-length 2
         company-selection-wrap-around t)
@@ -70,6 +71,7 @@
   (bind-keys :map company-search-map
              ("C-n" . company-select-next)
              ("C-p" . company-select-previous)))
+
 
 (use-package popwin
   :ensure t
