@@ -133,6 +133,9 @@
   :bind (("C-z" . undo)     ; Zap to character isn't helpful
          ("C-S-z" . redo)))
 
+(use-package plantuml-mode
+  :ensure t)
+
 (use-package smartparens
   :ensure t
   :diminish smartparens-mode
@@ -145,5 +148,14 @@
 (use-package smart-comment
   :ensure t
   :bind ("M-;" . smart-comment))
+
+(use-package highlight-symbol
+  :ensure
+  :config
+  (progn
+	(global-set-key [(control f3)] 'highlight-symbol)
+	(global-set-key [f3] 'highlight-symbol-next)
+	(global-set-key [(shift f3)] 'highlight-symbol-prev)
+	(global-set-key [(meta f3)] 'highlight-symbol-query-replace)))
 
 (provide 'config-package)
