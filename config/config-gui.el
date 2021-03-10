@@ -26,12 +26,10 @@
 		  apropos-do-all t
 		  mouse-yank-at-point t)))
 
-;; (use-package dracula-theme
-;;   :ensure t
-;;   :config
-;;   (load-theme 'dracula t))
-
-(load-theme 'leuven t)
+(use-package nord-theme
+  :ensure t
+  :config
+  (load-theme 'nord t))
 
 (set-frame-font "JetBrains Mono:pixelsize=14")
 

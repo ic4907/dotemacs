@@ -4,8 +4,6 @@
 
 (setq export-config-file (concat (getenv "BLOG_HOME") "export.el"))
 
-(setq gtd-path (concat (getenv "HOME") "/Documents/inbox/"))
-
 (if (not (file-exists-p export-config-file))
 	(copy-file "~/.emacs.d/config/export.el" export-config-file))
 
