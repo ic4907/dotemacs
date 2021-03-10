@@ -9,8 +9,14 @@
 
 (load-file export-config-file)
 
+;; (use-package org-bullets
+;;   :ensure t
+;;   :hook (org-mode . org-bullets-mode))
+
 (use-package org-bullets
-  :ensure t
+  :custom
+  (org-bullets-bullet-list '("◉" "☯" "○" "☯" "✸" "☯" "✿" "☯" "✜" "☯" "◆" "☯" "▶"))
+  (org-ellipsis "⤵")
   :hook (org-mode . org-bullets-mode))
 
 (server-mode)
