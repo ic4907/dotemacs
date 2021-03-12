@@ -26,10 +26,10 @@
 		  apropos-do-all t
 		  mouse-yank-at-point t)))
 
-(use-package nord-theme
+(use-package leuven-theme
   :ensure t
   :config
-  (load-theme 'nord t))
+  (load-theme 'leuven t))
 
 (set-frame-font "JetBrains Mono:pixelsize=14")
 
