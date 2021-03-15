@@ -38,6 +38,7 @@
 		(expand-file-name "~/Documents/tools/plantuml.jar"))
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+  (setq org-startup-with-inline-images t)
   
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
 								 (file+headline "~/Documents/inbox/inbox.org" "Tasks")
@@ -45,5 +46,8 @@
 								("T" "Tickler" entry
 								 (file+headline "~/Documents/inbox/tickler.org" "Tickler")
 								 "* %i%? \n %U"))))
+
+(use-package org-journal
+  :ensure)
 
 (provide 'config-org)
