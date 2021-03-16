@@ -48,6 +48,7 @@
 								 "* %i%? \n %U"))))
 
 (use-package org-journal
-  :ensure)
+  :ensure
+  :bind (("C-c C-s" . org-journal-search)))
 
 (provide 'config-org)
