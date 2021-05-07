@@ -7,9 +7,9 @@
 
 (load-file export-config-file)
 
-;; (use-package org-bullets
-;;   :ensure t
-;;   :hook (org-mode . org-bullets-mode))
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org-bullets
   :custom
@@ -26,6 +26,7 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
   (require 'org-tempo)
+  (setq org-confirm-babel-evaluate nil)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
   (setq org-refile-targets '(("~/Documents/inbox/gtd.org" :maxlevel . 3)
 							 ("~/Documents/inbox/someday.org" :level . 1)
