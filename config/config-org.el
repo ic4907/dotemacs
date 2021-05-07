@@ -1,5 +1,3 @@
-(require 'org-tempo)
-
 (setenv "BLOG_HOME" (concat (getenv "HOME") "/Documents/blog/"))
 
 (setq export-config-file (concat (getenv "BLOG_HOME") "export.el"))
@@ -27,6 +25,7 @@
   (global-set-key (kbd "C-c C-w") 'org-refile)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c a") 'org-agenda)
+  (require 'org-tempo)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
   (setq org-refile-targets '(("~/Documents/inbox/gtd.org" :maxlevel . 3)
 							 ("~/Documents/inbox/someday.org" :level . 1)
