@@ -7,6 +7,7 @@
   (setq easy-hugo-root "~/Documents/hugo/")
   (setq easy-hugo-default-ext ".org")
   (setq easy-hugo-org-header t)
+  (setq easy-hugo-postdir "content/posts")
   (setq easy-hugo-previewtime "300")
   :bind ("C-c C-e" . easy-hugo))
 
