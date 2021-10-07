@@ -49,6 +49,8 @@
 
 (use-package org-journal
   :ensure
-  :bind (("C-c C-s" . org-journal-search)))
+  :bind (("C-c C-s" . org-journal-search))
+  :config
+  (setq org-journal-dir "~/Documents/journal/"))
 
 (provide 'config-org)

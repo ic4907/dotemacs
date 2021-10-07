@@ -13,7 +13,8 @@
 
 (require 'config-default)
 (require 'config-gui)
-(require 'config-org)
+;; (require 'config-org)
+(require 'config-hugo)
 (require 'config-package)
 
 (setq custom-file
