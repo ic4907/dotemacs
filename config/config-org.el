@@ -1,12 +1,3 @@
-(setenv "BLOG_HOME" (concat (getenv "HOME") "/Documents/blog/"))
-
-(setq export-config-file (concat (getenv "BLOG_HOME") "export.el"))
-
-(if (not (file-exists-p export-config-file))
-	(copy-file "~/.emacs.d/config/export.el" export-config-file))
-
-(load-file export-config-file)
-
 (use-package org-bullets
   :ensure t
   :hook (org-mode . org-bullets-mode))
@@ -27,13 +18,10 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (require 'org-tempo)
   (setq org-confirm-babel-evaluate nil)
+  (setq org-log-done 'time)
   (setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
-  (setq org-refile-targets '(("~/Documents/inbox/gtd.org" :maxlevel . 3)
-							 ("~/Documents/inbox/someday.org" :level . 1)
-							 ("~/Documents/inbox/tickler.org" :maxlevel . 2)))
-  (setq org-agenda-files '("~/Documents/inbox/inbox.org"
-						   "~/Documents/inbox/gtd.org"
-						   "~/Documents/inbox/tickler.org"))
+  (setq org-refile-targets '(("~/Documents/inbox/inbox.org" :maxlevel . 3)))						   
+  (setq org-agenda-files '("~/Documents/inbox/inbox.org"))
   (setq org-plantuml-jar-path
 		(expand-file-name "~/Documents/tools/plantuml.jar"))
   (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
@@ -42,10 +30,7 @@
   
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
 								 (file+headline "~/Documents/inbox/inbox.org" "Tasks")
-								 "* TODO %i%?")
-								("T" "Tickler" entry
-								 (file+headline "~/Documents/inbox/tickler.org" "Tickler")
-								 "* %i%? \n %U"))))
+								 "* TODO %i%?"))))
 
 (use-package org-journal
   :ensure
